@@ -6,9 +6,9 @@ const WeatherCard = ({ weatherData }) => {
 
   return (
     <>
-      <h3>{weatherData.location.name}</h3>
+      <h3>Forecast (7 days)</h3>
       <div className="row">
-        {weatherData.forecast.forecastday.map((day) => (
+        {weatherData.forecast?.forecastday?.map((day) => (
           <div className="col-md-3 mb-3" key={day.date}>
             <Card>
               <Card.Header>{day.date}</Card.Header>
