@@ -91,9 +91,7 @@ function App() {
     <div className="container mt-3">
       <h1>Weather App</h1>
       <hr />
-      {permissionDenied && !weatherData && (
-        <AlertArea />
-      )}
+      <AlertArea show={permissionDenied && !weatherData} alert={"Location permission is not granted."} />
       <SearchArea handleFormSubmit={handleFormSubmit} />
       <hr />
       <SpinnerArea show={loading} />
