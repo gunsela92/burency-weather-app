@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getCurrentLocation = async () => {
   try {
     const position = await new Promise((resolve, reject) => {
@@ -16,14 +18,13 @@ export const getCurrentLocation = async () => {
     };
   } catch (error) {
     // If user does not give location permission, try to get location from IP address
-    const response = await fetch("https://ipapi.co/json/");
-    if (!response.ok) {
+    const response = await axios.get("https://ipapi.co/json/");
+    if (!response?.data) {
       throw new Error("Unable to get location");
     }
-    const data = await response.json();
     return {
-      latitude: data.latitude,
-      longitude: data.longitude,
+      latitude: response?.data.latitude,
+      longitude: response?.data.longitude,
     };
   }
 };

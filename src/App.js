@@ -6,6 +6,7 @@ import WeatherCard from "./Components/WeatherCard";
 import SearchArea from "./Components/Search";
 import AlertArea from "./Components/Alert";
 import SpinnerArea from "./Components/Spinner";
+import CurrentWeatherArea from "./Components/CurrentWeather";
 
 function App() {
   const [location, setLocation] = useState(null);
@@ -53,7 +54,6 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(location, focused)
       if (location && focused) {
         if (searchQuery) {
           fetchSearchResults(searchQuery)
@@ -95,6 +95,10 @@ function App() {
       <SearchArea handleFormSubmit={handleFormSubmit} />
       <hr />
       <SpinnerArea show={loading} />
+      {weatherData && (
+        <CurrentWeatherArea weatherData={weatherData} />
+      )}
+      <hr />
       {weatherData && (
         <WeatherCard weatherData={weatherData} />
       )}
